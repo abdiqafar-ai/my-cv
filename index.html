@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abdiqafar Ibrahim | Full-Stack Developer</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      :root {
+        --primary: #6a11cb;
+        --secondary: #2575fc;
+        --accent: #ff3e7f;
+        --dark: #0f0c29;
+        --darker: #07051a;
+        --light: #f8f9fa;
+        --gray: #adb5bd;
+        --card-bg: rgba(255, 255, 255, 0.1);
+        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+        color: var(--light);
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .particles-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .cv-container {
+        width: 100%;
+        max-width: 1000px;
+        min-height: 1400px;
+        background: rgba(255, 255, 255, 0.95);
+        color: #333;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+        position: relative;
+        z-index: 10;
+        transition: var(--transition);
+      }
+
+      .cv-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+      }
+
+      .cv-header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        padding: 50px 40px 40px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .header-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.1;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 255, 255, 0.8) 1px,
+            transparent 1px
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 255, 255, 0.6) 1px,
+            transparent 1px
+          );
+        background-size: 40px 40px;
+      }
+
+      .profile-img-placeholder {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 6px solid rgba(255, 255, 255, 0.25);
+        margin: 0 auto 25px;
+        position: relative;
+        z-index: 1;
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        color: white;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: var(--transition);
+      }
+
+      .profile-img-placeholder:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .cv-name {
+        font-family: "Montserrat", sans-serif;
+        font-size: 3rem;
+        font-weight: 900;
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+        color: white;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .cv-title {
+        font-size: 1.6rem;
+        font-weight: 400;
+        opacity: 0.9;
+        position: relative;
+        z-index: 1;
+        color: rgba(255, 255, 255, 0.95);
+        letter-spacing: 1px;
+      }
+
+      .cv-body {
+        padding: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 35px;
+      }
+
+      .cv-section {
+        margin-bottom: 30px;
+      }
+
+      .cv-section-title {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 3px solid var(--primary);
+        color: var(--primary);
+        position: relative;
+        display: inline-block;
+      }
+
+      .cv-section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 60px;
+        height: 3px;
+        background: var(--secondary);
+      }
+
+      .cv-contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 20px;
+      }
+
+      .cv-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #f0f5ff;
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-size: 0.95rem;
+        box-shadow: 0 4px 10px rgba(106, 17, 203, 0.1);
+        transition: var(--transition);
+      }
+
+      .cv-contact-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(106, 17, 203, 0.2);
+      }
+
+      .cv-contact-item i {
+        color: var(--primary);
+        font-size: 1.1rem;
+      }
+
+      .cv-skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .cv-skill-category {
+        margin-bottom: 18px;
+      }
+
+      .cv-skill-category h4 {
+        font-size: 1.15rem;
+        margin-bottom: 10px;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cv-skill-category h4 i {
+        color: var(--secondary);
+      }
+
+      .cv-skill-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        padding: 6px 0;
+        border-bottom: 1px dashed #eee;
+      }
+
+      .cv-skill-item i {
+        color: var(--primary);
+        font-size: 0.9rem;
+      }
+
+      .cv-experience-item,
+      .cv-education-item {
+        margin-bottom: 28px;
+        position: relative;
+        padding-left: 28px;
+        border-left: 2px solid var(--primary);
+      }
+
+      .cv-experience-item::before,
+      .cv-education-item::before {
+        content: "";
+        position: absolute;
+        left: -9px;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 0 4px rgba(106, 17, 203, 0.2);
+      }
+
+      .cv-experience-title,
+      .cv-education-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: #222;
+      }
+
+      .cv-experience-company,
+      .cv-education-institution {
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 6px;
+        font-size: 1.05rem;
+      }
+
+      .cv-experience-date,
+      .cv-education-date {
+        font-size: 0.92rem;
+        opacity: 0.85;
+        margin-bottom: 12px;
+        font-weight: 500;
+        color: #555;
+      }
+
+      .cv-experience-description,
+      .cv-education-description {
+        font-size: 0.97rem;
+        color: #444;
+      }
+
+      .cv-experience-description ul {
+        padding-left: 20px;
+      }
+
+      .cv-experience-description li {
+        margin-bottom: 8px;
+      }
+
+      .cv-projects-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .cv-project-item {
+        background: #f8f9ff;
+        padding: 22px;
+        border-radius: 15px;
+        transition: var(--transition);
+        border: 1px solid #e0e5ff;
+        box-shadow: 0 8px 20px rgba(106, 17, 203, 0.08);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cv-project-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5px;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          var(--primary),
+          var(--secondary)
+        );
+      }
+
+      .cv-project-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(106, 17, 203, 0.15);
+      }
+
+      .cv-project-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #222;
+      }
+
+      .cv-project-title i {
+        color: var(--primary);
+        background: rgba(106, 17, 203, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cv-project-description {
+        font-size: 0.97rem;
+        margin-bottom: 18px;
+        color: #444;
+        padding-left: 52px;
+      }
+
+      .cv-reference {
+        background: linear-gradient(
+          135deg,
+          rgba(106, 17, 203, 0.1),
+          rgba(37, 117, 252, 0.1)
+        );
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        margin-top: 30px;
+        border: 1px solid rgba(106, 17, 203, 0.15);
+        transition: var(--transition);
+      }
+
+      .cv-reference:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 25px rgba(106, 17, 203, 0.1);
+      }
+
+      .cv-reference h3 {
+        color: var(--primary);
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+
+      .cv-reference p {
+        font-size: 1.1rem;
+        color: #444;
+        font-weight: 500;
+      }
+
+      .cv-actions {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        padding: 35px 0;
+        background: rgba(255, 255, 255, 0.98);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .cv-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px 35px;
+        border-radius: 50px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        text-align: center;
+        text-decoration: none;
+        transition: var(--transition);
+        cursor: pointer;
+        border: none;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        font-size: 0.95rem;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .cv-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        z-index: -1;
+        transition: var(--transition);
+      }
+
+      .cv-btn-download::before {
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+      }
+
+      .cv-btn-print::before {
+        background: linear-gradient(90deg, var(--accent), #ff6b9c);
+      }
+
+      .cv-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      }
+
+      .cv-btn:hover::before {
+        transform: scale(1.05);
+      }
+
+      .cv-btn span {
+        position: relative;
+        z-index: 2;
+        color: white;
+      }
+
+      .tech-tag {
+        display: inline-block;
+        background: linear-gradient(
+          135deg,
+          rgba(106, 17, 203, 0.15),
+          rgba(37, 117, 252, 0.15)
+        );
+        color: var(--primary);
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        margin: 8px 8px 0 0;
+        font-weight: 600;
+        border: 1px solid rgba(106, 17, 203, 0.2);
+      }
+
+      /* Print-specific styles */
+      @media print {
+        body {
+          background: white !important;
+          padding: 0;
+        }
+
+        .cv-container {
+          margin: 0;
+          border-radius: 0;
+          box-shadow: none;
+          max-width: 100%;
+          min-height: auto;
+        }
+
+        .cv-actions {
+          display: none !important;
+        }
+
+        body,
+        .cv-container {
+          height: auto;
+          overflow: visible !important;
+        }
+
+        .particles-bg {
+          display: none;
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 900px) {
+        .cv-body {
+          grid-template-columns: 1fr;
+          padding: 30px;
+        }
+
+        .cv-name {
+          font-size: 2.5rem;
+        }
+
+        .cv-title {
+          font-size: 1.3rem;
+        }
+
+        .cv-actions {
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+          padding: 25px 0;
+        }
+
+        .cv-btn {
+          width: 85%;
+          padding: 15px;
+        }
+
+        .profile-img-placeholder {
+          width: 140px;
+          height: 140px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .cv-header {
+          padding: 40px 20px 30px;
+        }
+
+        .cv-body {
+          padding: 20px;
+        }
+
+        .cv-name {
+          font-size: 2.2rem;
+        }
+
+        .cv-skills-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cv-contact-item {
+          width: 100%;
+        }
+      }
+
+      .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        transform: translateX(120%);
+        transition: transform 0.4s ease;
+      }
+
+      .notification.show {
+        transform: translateX(0);
+      }
+
+      .cv-footer {
+        padding: 25px;
+        text-align: center;
+        background: #f8f9ff;
+        font-size: 0.9rem;
+        color: #666;
+        border-top: 1px solid #e0e5ff;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="particles-bg" id="particles-bg"></div>
+
+    <div class="notification" id="notification">
+      <i class="fas fa-check-circle"></i>
+      <span id="notification-text">PDF is being generated...</span>
+    </div>
+
+    <div class="cv-container" id="cvToPrint">
+      <div class="cv-header">
+        <div class="header-pattern"></div>
+        <div class="profile-img-placeholder">
+          <i class="fas fa-user"></i>
+        </div>
+        <h1 class="cv-name">Abdiqafar Ibrahim</h1>
+        <p class="cv-title">Full-Stack Developer</p>
+      </div>
+
+      <div class="cv-body">
+        <div class="left-column">
+          <div class="cv-section">
+            <h2 class="cv-section-title">Contact</h2>
+            <div class="cv-contact-info">
+              <div class="cv-contact-item">
+                <i class="fas fa-envelope"></i>
+                <span>iabdiqafar24@gmail.com</span>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fas fa-phone"></i>
+                <span>+254 726 618 175</span>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Nairobi, Kenya</span>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fab fa-github"></i>
+                <span>github.com/abdiqafar-ai</span>
+              </div>
+              <div class="cv-contact-item">
+                <i class="fab fa-linkedin"></i>
+                <span>linkedin.com/in/abdiqafar-ibrahim</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-section">
+            <h2 class="cv-section-title">Summary</h2>
+            <p>
+              I am a recent graduate of the Software Engineering course at
+              Moringa School, seeking an internship opportunity to apply and
+              grow my skills in web development. I have hands-on experience
+              building responsive web applications using technologies like
+              React, JavaScript, Next.js, and Flask. Passionate about learning
+              and contributing to real-world projects as I start my career in
+              software engineering.
+            </p>
+          </div>
+
+          <div class="cv-section">
+            <h2 class="cv-section-title">Skills</h2>
+            <div class="cv-skills-grid">
+              <div class="cv-skill-category">
+                <h4><i class="fas fa-laptop-code"></i> Frontend</h4>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>HTML5, CSS3</span>
+                </div>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>JavaScript (ES6+)</span>
+                </div>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>React.js</span>
+                </div>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Next.js Framework</span>
+                </div>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Responsive Design</span>
+                </div>
+              </div>
+
+              <div class="cv-skill-category">
+                <h4><i class="fas fa-server"></i> Backend</h4>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Python/Flask</span>
+                </div>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>RESTful APIs</span>
+                </div>
+              </div>
+
+              <div class="cv-skill-category">
+                <h4><i class="fas fa-database"></i> Database</h4>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>MySQL & PostgreSQL</span>
+                </div>
+              </div>
+
+              <div class="cv-skill-category">
+                <h4><i class="fas fa-tools"></i> Tools & Methods</h4>
+                <div class="cv-skill-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Git & GitHub</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-section">
+            <h2 class="cv-section-title">Education</h2>
+            <div class="cv-education-item">
+              <div class="cv-education-title">
+                Certificate of Completion – Software Engineering
+              </div>
+              <div class="cv-education-institution">
+                Moringa School, Nairobi, Kenya
+              </div>
+              <div class="cv-education-date">2024 - 2025</div>
+              <div class="cv-education-description">
+                Full-stack web development program focusing on modern
+                technologies and industry best practices.
+              </div>
+            </div>
+          </div>
+
+          <div class="cv-reference">
+            <h3>Professional References</h3>
+            <p>Available on demand</p>
+          </div>
+        </div>
+
+        <div class="right-column">
+        <div class="cv-section">
+          <h2 class="cv-section-title">Experience</h2>
+          <div class="cv-experience-item">
+            <div class="cv-experience-title">Software Engineering Graduate</div>
+            <div class="cv-experience-company">
+              Moringa School, Nairobi, Kenya
+            </div>
+            <div class="cv-experience-date">2024</div>
+            <div class="cv-experience-description">
+              <ul>
+                <li>Completed intensive software engineering program covering frontend and backend development.</li>
+                <li>Built real-world projects using React, Next.js, Flask, and SQLAlchemy.</li>
+                <li>Collaborated with peers to develop and present full-stack applications.</li>
+                <li>Gained practical experience in REST API development, authentication systems, and responsive UI design.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      <div class="cv-section">
+        <h2 class="cv-section-title">Projects</h2>
+        <div class="cv-projects-grid">
+          <div class="cv-project-item">
+            <h3 class="cv-project-title">
+              <i class="fas fa-hospital"></i> Medsphere Hospital Management System
+            </h3>
+            <p class="cv-project-description">
+              A hospital management platform built with Flask and Nextjs to manage patients, doctors, and appointments.
+            </p>
+            <div class="cv-project-tech">
+              <span class="tech-tag">Flask</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Tailwind css</span>
+              <span class="tech-tag">SQLAlchemy</span>
+            </div>
+          </div>
+
+        <div class="cv-project-item">
+        <h3 class="cv-project-title">
+          <i class="fas fa-film"></i> Movie Browser
+        </h3>
+        <p class="cv-project-description">
+          A comprehensive movie discovery platform built with Next.js that allows users to search, explore, and save their favorite films. Integrated with TMDB and OMDb APIs, the platform features real-time search, personalized recommendations, watchlist management, and user authentication for a seamless movie browsing experience.
+        </p>
+        <div class="cv-project-tech">
+          <span class="tech-tag">Next.js</span>
+          <span class="tech-tag">React</span>
+          <span class="tech-tag">TMDB API</span>
+          <span class="tech-tag">OMDb API</span>
+          <span class="tech-tag">Tailwind CSS</span>
+          <span class="tech-tag">Firebase Auth</span>
+        </div>
+        </div>
+
+        <div class="cv-project-item">
+  <h3 class="cv-project-title">
+    <i class="fas fa-user"></i> Personal Portfolio Website
+  </h3>
+  <p class="cv-project-description">
+    A professional personal portfolio website showcasing projects and skills, built using HTML, CSS, and JavaScript. Designed to highlight work experience and contact information in a responsive layout.
+  </p>
+  <div class="cv-project-tech">
+    <span class="tech-tag">HTML</span>
+    <span class="tech-tag">CSS</span>
+    <span class="tech-tag">JavaScript</span>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+    <div class="cv-section">
+      <h2 class="cv-section-title">Certifications</h2>
+      <div class="cv-education-item">
+        <div class="cv-education-title">Full Stack Web Development</div>
+        <div class="cv-education-institution">Moringa School</div>
+        <div class="cv-education-date">2024-2025</div>
+      </div>
+    </div>
+  </div>
+
+
+      <div class="cv-footer">
+        <p>
+          This CV was generated on <span id="current-date"></span> | References
+          available on demand
+        </p>
+      </div>
+
+      <div class="cv-actions">
+        <button class="cv-btn cv-btn-download" id="downloadCvBtn">
+          <i class="fas fa-download"></i> <span>Download PDF</span>
+        </button>
+        <button class="cv-btn cv-btn-print" id="printCvBtn">
+          <i class="fas fa-print"></i> <span>Print CV</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Set current date in footer
+      const now = new Date();
+      const options = { year: "numeric", month: "long", day: "numeric" };
+      document.getElementById("current-date").textContent =
+        now.toLocaleDateString("en-US", options);
+
+      // Function to show notification
+      function showNotification(message) {
+        const notification = document.getElementById("notification");
+        const notificationText = document.getElementById("notification-text");
+        notificationText.textContent = message;
+        notification.classList.add("show");
+
+        setTimeout(() => {
+          notification.classList.remove("show");
+        }, 3000);
+      }
+
+      // Download CV as PDF
+      document.getElementById("downloadCvBtn").addEventListener("click", () => {
+        showNotification("Generating PDF... Please wait");
+
+        // Hide the action buttons temporarily during PDF generation
+        const actions = document.querySelector(".cv-actions");
+        actions.style.display = "none";
+
+        const element = document.getElementById("cvToPrint");
+        const opt = {
+          margin: 10,
+          filename: "Abdiqafar_Ibrahim_CV.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            scrollY: 0,
+          },
+          jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "portrait",
+          },
+          pagebreak: {
+            avoid: ".cv-section, .cv-project-item, .cv-education-item",
+          },
+        };
+
+        // Generate and download PDF
+        html2pdf()
+          .set(opt)
+          .from(element)
+          .save()
+          .then(() => {
+            // Show buttons again after PDF generation
+            actions.style.display = "flex";
+            showNotification("PDF downloaded successfully!");
+          });
+      });
+
+      // Print CV
+      document.getElementById("printCvBtn").addEventListener("click", () => {
+        showNotification("Preparing for printing...");
+        // Hide the action buttons temporarily during printing
+        const actions = document.querySelector(".cv-actions");
+        actions.style.display = "none";
+
+        setTimeout(() => {
+          window.print();
+          // Show buttons again after printing
+          setTimeout(() => {
+            actions.style.display = "flex";
+          }, 500);
+        }, 500);
+      });
+
+      // Create simple particle background
+      const particlesBg = document.getElementById("particles-bg");
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement("div");
+        particle.style.position = "absolute";
+        particle.style.width = `${Math.random() * 6 + 2}px`;
+        particle.style.height = particle.style.width;
+        particle.style.background = `rgba(106, 17, 203, ${
+          Math.random() * 0.4 + 0.1
+        })`;
+        particle.style.borderRadius = "50%";
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.boxShadow = "0 0 10px rgba(106, 17, 203, 0.5)";
+        particle.style.animation = `float ${
+          Math.random() * 20 + 10
+        }s infinite linear`;
+
+        // Add animation
+        document.styleSheets[0].addRule(
+          "@keyframes float",
+          `
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(${Math.random() * 100 - 50}vw, ${
+            Math.random() * 100 - 50
+          }vh); }
+      `
+        );
+
+        particlesBg.appendChild(particle);
+      }
+    </script>
+  </body>
+</html>
